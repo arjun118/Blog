@@ -1,0 +1,51 @@
+{% extends "base.html" %} 
+{% block customcss %}  
+    <style>
+        .card-header-main{
+            font-size: 30px;
+        }
+    </style>
+{% endblock customcss %} 
+{% block content %} 
+{% for article in article_list %} 
+    <div class="card">
+        <div class="card-header text-center pt-5">
+            <span class="font-weight-bold card-header-main">
+                <a href="{% url 'article_detail' article.pk %}">{{ article.title }}</a>
+            </span>
+            <br />
+            <span class="text-muted">
+               By  {{ article.author }} | {{ article.date }}
+            </span>
+
+        </div>
+
+        <div class="card-body py-5">
+            <p> {{ article.body }}</p>
+           <div class="container text-center">
+            <a href="{% url 'article_edit' article.pk %}" class="btn btn-lg btn-outline-info">Edit</a> 
+            <a href="{% url 'article_delete' article.pk %}"  class="btn btn-lg btn-outline-info">Delete</a>
+           </div>
+
+        </div>
+
+        <div class="card-footer">
+            <h3 class="text-muted">Comments</h3>
+            {% for comment in article.comment_set.all %} 
+                <figure class="text-center">
+                    <blockquote class="blockquote">
+                      <p> {{ comment }}</p>
+                    </blockquote>
+                    <figcaption class="blockquote-footer">
+                      By <cite title="Source Title">{{ comment.author }}</cite>
+                    </figcaption>
+                  </figure>
+            {% endfor %} 
+        </div>
+    </div>
+    <br />
+
+    
+{% endfor %} 
+{% endblock content %} 
+

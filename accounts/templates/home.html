@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+
+    {% if user.is_authenticated %}
+
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Welcome {{ user.username }}!</strong> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <p>Explore :)</p>
+        <div class="container text-center">
+            <a href="{% url 'logout' %}" class="btn btn-lg btn-outline-info">Log Out</a>
+         <a href="articles/" class="btn btn-lg btn-outline-info">View Posts</a>
+        </div>
+
+    {% else %}
+        <div class="container">
+
+            <p>You are not logged in</p>
+
+            <p>Please login to view the Lost posts or to create your post about something that is lost</p>
+
+            <p>Dont have an account? Sign up :)</p>
+        </div>
+    {% endif %}
+{% endblock content %}
