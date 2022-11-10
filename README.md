@@ -20,7 +20,7 @@ After activating the virtual environment cd into the Blog folder and install the
 
 > pip install -r requirements.txt
 
-** Run the Server **
+**Run the Server**
 
 > python manage.py runserver
 
